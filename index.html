@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hungry Monster</title>
+    <link rel="stylesheet" href="css/styles.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 </head>
 <body>
@@ -35,10 +36,28 @@
 
 
           <div class=" container w-50 mt-5 input-group mb-3">
-            <input type="text" class="form-control" placeholder="Search for Food.." aria-label="Recipient's username" aria-describedby="button-addon2">
-            <button class="btn btn-danger" type="button" id="button-addon2">Search</button>
+            <input id="search-input" type="text" class="form-control" placeholder="Search for Food.." aria-label="Recipient's username" aria-describedby="button-addon2">
+            <button class="btn btn-danger" type="button" id="search-btn">Search</button>
           </div>
-    </header>
+
+        </header>
+
+
+
+          <main id="result-section" class="container"> 
+
+          </main>
+
+          <section id="detail-section" class="container">
+              <img src="" alt="" id="detail-image">
+              <h2 id="detail-header"></h2>
+              <h5>Ingredients</h5>
+              <ul id="ingredients-ul"></ul>
+
+          </section>
+    
+
+    
 
     <script src="scripts/script.js"></script>
     

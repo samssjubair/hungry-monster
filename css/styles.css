@@ -1,0 +1,23 @@
+
+.food-div{
+    width: 90%;
+    background-color: #F8F7F5;
+    padding: 2%;
+}
+.thumb-img{
+    width: 100%;
+}
+.food-title{
+    text-align: center;
+}
+.nothing-found{
+    text-align: center;
+}
+#result-section{
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: repeat(3,1fr);
+}
+#detail-section{
+    display: none;
+}
