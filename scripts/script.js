@@ -48,9 +48,7 @@ function displayResult(foods){
         <h3 class="food-title">${food.strMeal}</h2>
         `;
         foodDiv.innerHTML=divContent;
-        resultSection.appendChild(foodDiv);
-
-        
+        resultSection.appendChild(foodDiv);   
     });
     foodClickHandler();
 }
@@ -63,48 +61,52 @@ function foodClickHandler(){
         if(event.target.tagName=="IMG"||event.target.tagName=="H3"){
             const clickedFoodDiv= event.target.parentNode;
             const clickedFood= clickedFoodDiv.querySelector('h3').innerText;
-            displayDetail(clickedFood);
+            loadIngredients(clickedFood);
         }
         else if(event.target.tagName=="DIV"){
             const clickedFoodDiv= event.target;
             const clickedFood= clickedFoodDiv.querySelector('h3').innerText;
-            displayDetail(clickedFood);
+            loadIngredients(clickedFood);
         }
     })
     
 }
 
 
-//display all ingredients by fetching from API
-function displayDetail(clickedFood){
+//load all ingredients by fetching from API
+function loadIngredients(clickedFood){
     document.getElementById('result-section').style.display='none';
     document.getElementById('search-div').style.display='none';
     document.getElementById('detail-section').style.display='block';
     fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${clickedFood}`)
             .then(res=>res.json())
-            .then(data=>{
-                data.meals.forEach(element => {
-                    if(element.strMeal==clickedFood){
-                        document.getElementById('detail-image').setAttribute('src',element.strMealThumb);
-                        document.getElementById('detail-header').innerText=clickedFood;
-                        for (let i = 1; i < 21; i++) {
-                            const list=document.createElement('li');
-                            const measure= element['strMeasure'+i];
-                            
-                            const ingredient= element['strIngredient'+i];
-                            if(ingredient==""||ingredient==null){
-                                break;
-                            }
-                            const listContent= `${measure} ${ingredient}`;
-                            list.innerText=listContent;
-                            document.getElementById('ingredients-ul').appendChild(list);                         
-                        }
-                        document.getElementById('ingredient-title').innerText="Ingredients";
-                        
-                    }
-                });
-            })
+            .then(data=>displayIngredients(data,clickedFood))
             
+}
+
+
+//display ingredients data
+function displayIngredients(data,clickedFood){
+    data.meals.forEach(element => {
+        if(element.strMeal==clickedFood){
+            document.getElementById('detail-image').setAttribute('src',element.strMealThumb);
+            document.getElementById('detail-header').innerText=clickedFood;
+            for (let i = 1; i < 21; i++) {
+                const list=document.createElement('li');
+                const measure= element['strMeasure'+i];
+                
+                const ingredient= element['strIngredient'+i];
+                if(ingredient==""||ingredient==null){
+                    break;
+                }
+                const listContent= `${measure} ${ingredient}`;
+                list.innerText=listContent;
+                document.getElementById('ingredients-ul').appendChild(list);                         
+            }
+            document.getElementById('ingredient-title').innerText="Ingredients";
+            
+        }
+    });
 }
 
 
