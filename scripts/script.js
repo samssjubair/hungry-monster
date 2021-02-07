@@ -1,5 +1,5 @@
 //search button click handler
-function searchClickHandler(){
+const searchClickHandler=()=>{
     document.getElementById('search-btn').addEventListener('click',()=>{
         const searchedFood= document.getElementById('search-input').value;
         document.getElementById('search-input').value="";
@@ -22,12 +22,12 @@ function searchClickHandler(){
     })
 }
 
-
 searchClickHandler();
 
 
+
 //if promise is unsuccessful and no data is found
-function noResult(){
+const noResult=()=>{
     const resultSection= document.getElementById('result-section');
     const foodDiv=document.createElement('div');
     foodDiv.className='nothing-found'
@@ -38,7 +38,7 @@ function noResult(){
 
 
 //display all the matched results
-function displayResult(foods){
+const displayResult=(foods)=>{
     foods.forEach(food => {
         const resultSection= document.getElementById('result-section');
         const foodDiv=document.createElement('div');
@@ -55,7 +55,7 @@ function displayResult(foods){
 
 
 //If any food is clicked(calling DISPLAY DETAIL function in basis where it's clicked)
-function foodClickHandler(){
+const foodClickHandler=()=>{
     const allFoods=document.getElementById('result-section');
     allFoods.addEventListener('click',(event)=>{
         if(event.target.tagName=="IMG"||event.target.tagName=="H3"){
@@ -74,7 +74,7 @@ function foodClickHandler(){
 
 
 //load all ingredients by fetching from API
-function loadIngredients(clickedFood){
+const loadIngredients=(clickedFood)=>{
     document.getElementById('result-section').style.display='none';
     document.getElementById('search-div').style.display='none';
     document.getElementById('detail-section').style.display='block';
@@ -86,7 +86,7 @@ function loadIngredients(clickedFood){
 
 
 //display ingredients data
-function displayIngredients(data,clickedFood){
+const displayIngredients=(data,clickedFood)=>{
     data.meals.forEach(element => {
         if(element.strMeal==clickedFood){
             document.getElementById('detail-image').setAttribute('src',element.strMealThumb);
