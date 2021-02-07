@@ -1,6 +1,9 @@
 body{
     font-family: 'Roboto', sans-serif;
 }
+h3{
+    font-size: 1.5rem;
+}
 .food-div{
     
     background-color: #ebe8e2;
@@ -17,7 +20,9 @@ body{
     text-align: center;
 }
 .nothing-found{
+    
     text-align: center;
+    
 }
 
 
