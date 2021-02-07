@@ -98,7 +98,7 @@ function displayDetail(clickedFood){
                             const measure= element['strMeasure'+i];
                             
                             const ingredient= element['strIngredient'+i];
-                            if(ingredient==""){
+                            if(ingredient==""||ingredient==null){
                                 break;
                             }
                             const listContent= `${measure} ${ingredient}`;
@@ -107,9 +107,12 @@ function displayDetail(clickedFood){
                             
                                                     
                         }
+                        document.getElementById('ingredient-title').innerText="Ingredients";
+                        
                     }
                 });
             })
+            
 }
 
 
