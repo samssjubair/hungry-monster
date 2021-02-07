@@ -64,13 +64,28 @@ function displayResult(foods){
 function foodClickHandler(){
     const allFoods=document.getElementById('result-section');
     allFoods.addEventListener('click',(event)=>{
-        document.getElementById('result-section').style.display='none';
-        document.getElementById('detail-section').style.display='block';
+        
         if(event.target.tagName=="IMG"||event.target.tagName=="H3"){
             const clickedFoodDiv= event.target.parentNode;
             const clickedFood= clickedFoodDiv.querySelector('h3').innerText;
             
-            fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${clickedFood}`)
+            displayDetail(clickedFood);
+        }
+        else if(event.target.tagName=="DIV"){
+            const clickedFoodDiv= event.target;
+            const clickedFood= clickedFoodDiv.querySelector('h3').innerText;
+            
+            displayDetail(clickedFood);
+        }
+    })
+    
+}
+
+function displayDetail(clickedFood){
+    document.getElementById('result-section').style.display='none';
+    document.getElementById('search-div').style.display='none';
+    document.getElementById('detail-section').style.display='block';
+    fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${clickedFood}`)
             .then(res=>res.json())
             .then(data=>{
                 data.meals.forEach(element => {
@@ -95,12 +110,6 @@ function foodClickHandler(){
                     }
                 });
             })
-        }
-        else{
-            console.log(event.target);
-        }
-    })
-    
 }
 
 
